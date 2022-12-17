@@ -32,7 +32,7 @@ namespace PatientsCommunity.Services
         }
         public async Task<List<AnswerModel>> GetAnswers()
         {
-            return await _context.tbl_Answers.ToListAsync();
+            return await _context.tbl_Answers.OrderByDescending(a => a.Id).ToListAsync();
         }
         public async Task<AnswerModel> GetAnswer(int id)
         {
@@ -44,6 +44,7 @@ namespace PatientsCommunity.Services
             if (findedAnswer != null)
             {
                 findedAnswer.Description = answer.Description;
+                findedAnswer.UpdateDate = DateTime.Now;
             }
             _context.SaveChanges();
         }

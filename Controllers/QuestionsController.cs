@@ -2,6 +2,7 @@
 using PatientsCommunity.Data;
 using PatientsCommunity.Interfaces;
 using PatientsCommunity.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace PatientsCommunity.Controllers
 {
@@ -17,9 +18,21 @@ namespace PatientsCommunity.Controllers
         }
         //==================================================================================================
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<QuestionModel>>> GetQuestions()
+        [SwaggerOperation(summary: "Tip: Use [search] queryString for searching and [page] queryString to pagination.")]
+        public async Task<ActionResult<IEnumerable<QuestionModel>>> GetQuestions(int page = 1, string? search = null)
         {
+            //Get Questions from DB
             var questions = await _question.GetQuestions();
+
+            //Search
+            if (!string.IsNullOrEmpty(search))
+            {
+                questions = questions.Where(q => q.Title.Contains(search)).ToList();
+            }
+
+            //Pagination
+            int pageLimit = 1;
+            questions = questions.Skip((page * pageLimit) - pageLimit).Take(pageLimit).ToList();
 
             if (!questions.Any())
             {

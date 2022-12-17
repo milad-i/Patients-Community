@@ -16,7 +16,11 @@ namespace PatientsCommunity.Services
 
         public bool CategoryExist(int id)
         {
-            return ( _context.tbl_Category?.Any(e => e.Id == id)).GetValueOrDefault();
+            return ( _context.tbl_Category?.Any(c => c.Id == id)).GetValueOrDefault();
+        }
+        public bool CategoryExistByName(string name)
+        {
+            return (_context.tbl_Category?.Any(c => c.Name == name)).GetValueOrDefault();
         }
         public void CreateCategory(CategoryModel category)
         {

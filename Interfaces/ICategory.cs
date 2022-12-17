@@ -10,5 +10,6 @@ namespace PatientsCommunity.Interfaces
         public void UpdateCategory(int id, CategoryModel category);
         public void DeleteCategory(int id);
         public bool CategoryExist(int id);
+        public bool CategoryExistByName(string name);
     }
 }

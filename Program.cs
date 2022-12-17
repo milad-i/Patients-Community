@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PatientsConnectionString")));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => { options.EnableAnnotations(); });
 
 builder.Services.AddTransient<IAnswer, AnswerServices>();
 builder.Services.AddTransient<ICategory, CategoryServices>();

@@ -54,12 +54,11 @@ namespace PatientsCommunity.Services
         }
         public async Task<List<QuestionModel>> GetQuestions()
         {
-            return await _context.tbl_Question.ToListAsync();
+            return await _context.tbl_Question.OrderByDescending(q => q.Id).ToListAsync();
         }
-
         public async Task<QuestionModel> GetQuestion(Guid id)
         {
-            return await _context.tbl_Question.FindAsync(id);
+            return await _context.tbl_Question.Include(q => q.Answers).FirstOrDefaultAsync(q => q.Id == id);
         }
         public void UpdateQuestion(Guid id, QuestionModel question, List<int> categoryIds)
         {
@@ -70,11 +69,12 @@ namespace PatientsCommunity.Services
             {
                 findedQuestion.Description = question.Description;
                 findedQuestion.Title = question.Title;
+                findedQuestion.UpdateDate = DateTime.Now;
             }
 
             //Update Question's Categories
             //------------------------------------------------------------------------------------------
-            if (categoryIds != null)
+            if (categoryIds.Any())
             {
                 //Delete all current categories in BD
                 var currentCategories = _context.tbl_QuestionCategory.Where(c => c.QuestionId== id).ToList();

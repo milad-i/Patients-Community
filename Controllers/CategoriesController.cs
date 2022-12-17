@@ -41,9 +41,9 @@ namespace PatientsCommunity.Controllers
         }
         //==================================================================================================
         [HttpPut("{id}")]
-        public IActionResult UpdateCategory(int id, [FromForm] CategoryModel categoryModel)
+        public IActionResult UpdateCategory(int id, [FromForm] CategoryModel category)
         {
-            if (id != categoryModel.Id)
+            if (id != category.Id)
             {
                 return BadRequest();
             }
@@ -55,7 +55,7 @@ namespace PatientsCommunity.Controllers
 
             try
             {
-                _category.UpdateCategory(id, categoryModel);
+                _category.UpdateCategory(id, category);
                 return Ok("Update Was Successful");
             }
             catch
@@ -67,11 +67,16 @@ namespace PatientsCommunity.Controllers
         }
         //==================================================================================================
         [HttpPost]
-        public ActionResult<CategoryModel> CreateCategory([FromForm] CategoryModel categoryModel)
+        public ActionResult<CategoryModel> CreateCategory([FromForm] CategoryModel category)
         {
             try
             {
-                _category.CreateCategory(categoryModel);
+                if (_category.CategoryExistByName(category.Name))
+                {
+                    return Content("Category Name Already Exist");
+
+                }
+                _category.CreateCategory(category);
                 //return CreatedAtAction("GetCategory", new { id = categoryModel.Id }, categoryModel);
                 return Ok("Create Was Successful");
             }
