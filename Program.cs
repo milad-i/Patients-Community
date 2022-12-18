@@ -2,13 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using PatientsCommunity.Data;
 using PatientsCommunity.Interfaces;
 using PatientsCommunity.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //=================================================================================================
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PatientsConnectionString")));
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => { options.EnableAnnotations(); });
 
@@ -20,11 +21,13 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 //=================================================================================================
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

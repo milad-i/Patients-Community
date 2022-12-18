@@ -31,12 +31,12 @@ namespace PatientsCommunity.Controllers
             }
 
             //Pagination
-            int pageLimit = 1;
+            int pageLimit = 30;
             questions = questions.Skip((page * pageLimit) - pageLimit).Take(pageLimit).ToList();
 
             if (!questions.Any())
             {
-                return NotFound();
+                return Content("No Item Found");
             }
             return questions;
         }
@@ -48,7 +48,7 @@ namespace PatientsCommunity.Controllers
 
             if (question == null)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             return question;
@@ -64,7 +64,7 @@ namespace PatientsCommunity.Controllers
 
             if (_question.QuestionExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try
@@ -105,7 +105,7 @@ namespace PatientsCommunity.Controllers
         {
             if (_question.QuestionExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try

@@ -22,7 +22,7 @@ namespace PatientsCommunity.Controllers
 
             if (!categories.Any())
             {
-                return NotFound();
+                return Content("No Item Found");
             }
             return categories;
         }
@@ -34,7 +34,7 @@ namespace PatientsCommunity.Controllers
 
             if (category == null)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             return category;
@@ -50,7 +50,7 @@ namespace PatientsCommunity.Controllers
 
             if (_category.CategoryExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try
@@ -91,7 +91,7 @@ namespace PatientsCommunity.Controllers
         {
             if (_category.CategoryExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try

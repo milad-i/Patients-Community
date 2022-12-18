@@ -30,7 +30,7 @@ namespace PatientsCommunity.Controllers
 
             if (!answers.Any())
             {
-                return NotFound();
+                return Content("No Item Found");
             }
             return answers;
         }
@@ -42,7 +42,7 @@ namespace PatientsCommunity.Controllers
 
             if (answer == null)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             return answer;
@@ -58,7 +58,7 @@ namespace PatientsCommunity.Controllers
 
             if (_answer.AnswerExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try
@@ -91,7 +91,7 @@ namespace PatientsCommunity.Controllers
         {
             if (_answer.AnswerExist(id) == false)
             {
-                return NotFound();
+                return Content("Not Found");
             }
 
             try
