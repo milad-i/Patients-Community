@@ -13,9 +13,11 @@ builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.Re
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => { options.EnableAnnotations(); });
 
-builder.Services.AddTransient<IAnswer, AnswerServices>();
+builder.Services.AddTransient<IAnswer, AnswerService>();
 builder.Services.AddTransient<ICategory, CategoryServices>();
 builder.Services.AddTransient<IQuestion, QuestionServices>();
+builder.Services.AddTransient<IAdmin, AdminService>();
+builder.Services.AddTransient<IProfile, ProfileService>();
 
 var app = builder.Build();
 

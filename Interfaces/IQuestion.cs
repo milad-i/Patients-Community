@@ -4,11 +4,11 @@ namespace PatientsCommunity.Interfaces
 {
     public interface IQuestion
     { 
-        public Task<QuestionModel> GetQuestion(Guid id);
-        public Task<List<QuestionModel>> GetQuestions();
-        public void CreateQuestion(QuestionModel Question, List<int> categoryIds);
-        public void UpdateQuestion(Guid id, QuestionModel Question, List<int> categoryIds);
-        public void DeleteQuestion(Guid id);
-        public bool QuestionExist(Guid id);
+        Task<QuestionModel> GetQuestion(Guid id);
+        Task<List<QuestionModel>> GetQuestions();
+        void CreateQuestion(QuestionModel Question, List<int> categoryIds);
+        void UpdateQuestion(Guid id, QuestionModel Question, List<int> categoryIds);
+        void DeleteQuestion(Guid id);
+        bool QuestionExist(Guid id);
     }
 }

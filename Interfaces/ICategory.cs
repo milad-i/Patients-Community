@@ -4,12 +4,12 @@ namespace PatientsCommunity.Interfaces
 {
     public interface ICategory
     {
-        public Task<CategoryModel> GetCategory(int id);
-        public Task<List<CategoryModel>> GetCategories();
-        public void CreateCategory(CategoryModel category);
-        public void UpdateCategory(int id, CategoryModel category);
-        public void DeleteCategory(int id);
-        public bool CategoryExist(int id);
-        public bool CategoryExistByName(string name);
+        Task<CategoryModel> GetCategory(int id);
+        Task<List<CategoryModel>> GetCategories();
+        void CreateCategory(CategoryModel category);
+        void UpdateCategory(int id, CategoryModel category);
+        void DeleteCategory(int id);
+        bool CategoryExist(int id);
+        bool CategoryExistByName(string name);
     }
 }

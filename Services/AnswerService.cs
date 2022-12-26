@@ -5,10 +5,10 @@ using PatientsCommunity.Models;
 
 namespace PatientsCommunity.Services
 {
-    public class AnswerServices : IAnswer
+    public class AnswerService : IAnswer
     {
         private readonly ApplicationDbContext _context;
-        public AnswerServices(ApplicationDbContext context)
+        public AnswerService(ApplicationDbContext context)
         {
             _context= context;
         }
