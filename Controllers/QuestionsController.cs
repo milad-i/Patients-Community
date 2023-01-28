@@ -41,6 +41,24 @@ namespace PatientsCommunity.Controllers
             return questions;
         }
         //==================================================================================================
+        [HttpGet("GetByCategory/{catId}")]
+        [SwaggerOperation(summary: "Tip: Use [page] queryString to pagination.")]
+        public async Task<ActionResult<IEnumerable<QuestionModel>>> GetQuestionsByCategory(int catId, int page = 1)
+        {
+            //Get Questions from DB
+            var questions = await _question.GetQuestionsByCategory(catId);
+
+            //Pagination
+            int pageLimit = 30;
+            questions = questions.Skip((page * pageLimit) - pageLimit).Take(pageLimit).ToList();
+
+            if (!questions.Any())
+            {
+                return Content("No Item Found");
+            }
+            return questions;
+        }
+        //==================================================================================================
         [HttpGet("{id}")]
         public async Task<ActionResult<QuestionModel>> GetQuestion(Guid id)
         {

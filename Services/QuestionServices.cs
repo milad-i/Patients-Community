@@ -54,7 +54,12 @@ namespace PatientsCommunity.Services
         }
         public async Task<List<QuestionModel>> GetQuestions()
         {
-            return await _context.tbl_Question.OrderByDescending(q => q.Id).ToListAsync();
+            var result = await _context.tbl_Question.Include(q => q.Answers).Include(q => q.QuestionCategories).OrderByDescending(q => q.Id).ToListAsync();
+            return result;
+        }
+        public async Task<List<QuestionModel>> GetQuestionsByCategory(int catId)
+        {
+            return await  _context.tbl_QuestionCategory.Include(q => q.Question).Where(q => q.CategoryId == catId).Select(q => q.Question).ToListAsync();
         }
         public async Task<QuestionModel> GetQuestion(Guid id)
         {
