@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientsCommunity", "PatientsCommunity.csproj", "{7ECAF83F-A658-4D97-B82D-E2899BA3C26F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsCommunity_UTest", "..\PatientsCommunity_UTest\PatientsCommunity_UTest.csproj", "{EE1B4F2C-0C9C-4FCD-B070-66B7FB3CF80D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientsCommunity_Tests", "..\PatientsCommunity_UTest\PatientsCommunity_Tests.csproj", "{EE1B4F2C-0C9C-4FCD-B070-66B7FB3CF80D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -49,7 +49,7 @@ namespace PatientsCommunity.Controllers
             var questions = await _question.GetQuestionsByCategory(catId);
 
             //Pagination
-            int pageLimit = 30;
+            int pageLimit = 6;
             questions = questions.Skip((page * pageLimit) - pageLimit).Take(pageLimit).ToList();
 
             if (!questions.Any())
